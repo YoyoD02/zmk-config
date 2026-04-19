@@ -98,7 +98,7 @@
     // Node name must match original "EXT_POWER" label to preserve user settings.
     EXT_POWER {
         compatible = "zmk,ext-power-generic";
-        control-gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
+        control-gpios = <&gpio0 5 GPIO_ACTIVE_LOW>;
     };
 
     /* 电池电量检测配置 - 使用ADC读取电池电压 */
