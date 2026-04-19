@@ -18,10 +18,11 @@
         /* RGB底灯驱动 */
         zmk,underglow = &led_strip;
         /* 电池电量检测驱动 */
-        zmk,battery = &vbatt;           /* <--- 电池电量检测 */ 
+        zmk,battery = &vbatt;                   /* <--- 电池电量检测 */ 
         zmk,ble-status-led = &led_ble_status;   /* <--- 新增 */
         zmk,physical-layout = &layout_60_ansi;  /* <--- 新增 键盘布局*/
-        zephyr,flash = &flash0;         /* 其他系统资源配置 */
+        zephyr,flash = &flash0;                 /* 其他系统资源配置 */
+        zmk,usb-name = "toutou!68";             /* USB设备名称 */
     };
 
 /* <--- 新增key location */
@@ -43,7 +44,7 @@
     /* 键盘矩阵扫描配置 - 5行 x 15列 矩阵 */
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
-        label = "TOUTOU68_KEYSCAN";
+        label = "toutou68_KEYSCAN";
 
         wakeup-source;                                          /* wakeup source must be below */
 
