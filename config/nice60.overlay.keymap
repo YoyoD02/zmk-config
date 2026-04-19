@@ -16,6 +16,7 @@
         zmk,underglow = &led_strip;
         /* 电池电量检测驱动 */
         zmk,battery = &vbatt;
+        zmk,ble-status-led = &led_ble_status;   /* <--- 新增 */
     };
 
     /* 键盘矩阵扫描配置 - 5行 x 15列 矩阵 */
@@ -61,6 +62,16 @@
             , <&gpio0 28 (GPIO_ACTIVE_HIGH)>  /* 列13 - 引脚028 (P0.28) */
             , <&gpio0 3  (GPIO_ACTIVE_HIGH)>; /* 列14 - 引脚003 (P0.03) */
     };
+
+/* 新增：蓝牙状态指示灯 */
+    leds {
+        compatible = "gpio-leds";
+        led_ble_status: led_ble_status {
+            label = "Bluetooth Status LED";
+            gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
+        };
+    };
+
 
     /* 电池电量检测配置 - 使用ADC读取电池电压 */
     vbatt: vbatt {
