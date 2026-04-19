@@ -6,7 +6,8 @@
 
 #include <dt-bindings/led/led.h>
 #include <dt-bindings/gpio/gpio.h>
-#include <layouts/common/60percent/ansi.dtsi> /* 新增，引入60% ANSI布局定义 */
+#include <layouts/common/60percent/ansi.dtsi>   /* 新增，引入60% ANSI布局定义 */
+#include <dt-bindings/zmk/matrix_transform.h>   /* 新增，引入矩阵变换定义 */
 
 
 / {
