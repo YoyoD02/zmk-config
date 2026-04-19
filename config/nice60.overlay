@@ -18,9 +18,10 @@
         /* RGB底灯驱动 */
         zmk,underglow = &led_strip;
         /* 电池电量检测驱动 */
-        zmk,battery = &vbatt;
+        zmk,battery = &vbatt;           /* <--- 电池电量检测 */ 
         zmk,ble-status-led = &led_ble_status;   /* <--- 新增 */
-        zmk,physical-layout = &layout_60_ansi;  /* <--- 新增 */
+        zmk,physical-layout = &layout_60_ansi;  /* <--- 新增 键盘布局*/
+        zephyr,flash = &flash0;         /* 其他系统资源配置 */
     };
 
 /* <--- 新增key location */
@@ -43,7 +44,9 @@
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "TOUTOU68_KEYSCAN";
-        
+
+        wakeup-source;                                          /* wakeup source must be below */
+
         /* 二极管方向: 行到列 (row2col) 或 列到行 (col2row) 
          * 需根据PCB实际电路确定, 常用 col2row */
         diode-direction = "col2row";
@@ -92,6 +95,11 @@
         };
     };
 
+    // Node name must match original "EXT_POWER" label to preserve user settings.
+    EXT_POWER {
+        compatible = "zmk,ext-power-generic";
+        control-gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
+    };
 
     /* 电池电量检测配置 - 使用ADC读取电池电压 */
     vbatt: vbatt {
@@ -182,6 +190,44 @@
         color-mapping = <LED_COLOR_ID_GREEN 
                          LED_COLOR_ID_RED 
                          LED_COLOR_ID_BLUE>;
+    };
+};
+
+// flash0: 引用 SoC 内部 Flash 存储器节点（nRF52840 内置 1MB Flash）
+// 下面通过 partitions 子节点定义 Flash 的布局，划分不同功能区域。
+&flash0 {
+
+    partitions {
+        compatible = "fixed-partitions";    // 固定分区，地址和大小在编译时确定
+        #address-cells = <1>;               // 地址用 32 位表示
+        #size-cells = <1>;                  // 大小用 32 位表示
+
+        // SoftDevice 分区：存储蓝牙协议栈（如 Nordic 的 SoftDevice 或 Zephyr 的 Controller）
+        // 地址范围：0x00000000 ~ 0x00000FFF (4KB)
+        sd_partition: partition@0 {
+            reg = <0x00000000 0x00001000>;
+        };
+
+        // 应用程序代码分区：存放 ZMK 固件的主要代码
+        // 地址范围：0x00001000 ~ 0x000D3FFF (约 844KB，具体取决于代码大小)
+        code_partition: partition@1000 {
+            reg = <0x00001000 0x000d3000>;
+        };
+
+        /*
+         * 存储分区：用于 FCB (Flash Circular Buffer)、LittleFS 或 NVS (Non-Volatile Storage)
+         * 存储键值对、配置参数、蓝牙配对信息等持久化数据。
+         * 地址范围：0x000D4000 ~ 0x000F3FFF (128KB)
+         */
+        storage_partition: partition@d4000 {
+            reg = <0x000d4000 0x00020000>;
+        };
+
+        // 引导加载程序分区：存储 MCUboot 或其他 bootloader
+        // 地址范围：0x000F4000 ~ 0x000FFFFF (48KB)
+        boot_partition: partition@f4000 {
+            reg = <0x000f4000 0x0000c000>;
+        };
     };
 };
 
