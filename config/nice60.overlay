@@ -36,12 +36,9 @@
         >;
     };
 
-
-
     /* 键盘矩阵扫描配置 - 5行 x 15列 矩阵 */
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
-        label = "nice68_KEYSCAN";
         wakeup-source;
 
         diode-direction = "col2row";    /* 二极管方向: 行到列 (row2col) 或 列到行 (col2row) , 需根据PCB实际电路确定, 常用 col2row */
