@@ -20,6 +20,6 @@
 ---
 include:
   # - board: nice60
-  - board: nrf52840dk_nrf52840
-    shield: toutou!68
-            
+  - board: nrfmicro_13
+    shield: toutou68
+    
