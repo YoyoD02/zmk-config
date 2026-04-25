@@ -1,0 +1,14 @@
+# 文件路径: config/boards/shields/toutou!68/toutou!68.zmk.yml
+
+file_format: "1"
+id: toutou68
+name: Toutou68
+type: shield
+url: https://github.com/YoyoD02/zmk-config.git
+requires:
+  - pro_micro
+features:
+  - keys
+  - underglow
+  - encoder  # 如果你的键盘有旋钮，请保留此行；否则删除
+  - studio
