@@ -19,5 +19,4 @@
 #
 ---
 include:
-  - board: nicekeyboards
-    shield: toutou68
+  - board: joric/nrfmicro
