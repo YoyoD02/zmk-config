@@ -1,8 +1,8 @@
 # 文件路径: config/boards/shields/toutou!68/toutou!68.zmk.yml
 
 file_format: "1"
-id: toutou!68
-name: Toutou!68
+id: toutou68
+name: Toutou68
 type: shield
 url: https://github.com/YoyoD02/zmk-config.git
 requires:
