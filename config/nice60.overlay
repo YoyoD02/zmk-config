@@ -120,27 +120,6 @@
         io-channels = <&adc 4>;
     };
 
-
-
-
-
-
-    test_led: test_led {
-        compatible = "gpio-leds";
-            led_test: led_test {
-            gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-        };
-    };
-
-
-
-
-
-
-
-
-
-
 };
 
 &adc {
@@ -257,3 +236,10 @@
 &layout_60_ansi {
     transform = <&default_transform>;
 };
+
+    test_led: test_led {
+        compatible = "gpio-leds";
+            led_test: led_test {
+            gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
+        };
+    };
