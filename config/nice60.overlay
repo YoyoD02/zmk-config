@@ -18,11 +18,11 @@
         /* RGB底灯驱动 */
         zmk,underglow = &led_strip;
         /* 电池电量检测驱动 */
-        zmk,battery = &vbatt;                   /* <--- 电池电量检测 */ 
-        zmk,ble-status-led = &led_ble_status;   /* <--- 新增 */
-        zmk,physical-layout = &layout_60_ansi;  /* <--- 新增 键盘布局*/
-        zephyr,flash = &flash0;                 /* 其他系统资源配置 */
-        zmk,usb-name = "toutou!68";             /* USB设备名称 */
+        zmk,battery = &vbatt;                       /* <--- 电池电量检测 */ 
+        zmk,physical-layout = &layout_60_ansi;      /* <--- 新增 键盘布局*/
+        zephyr,flash = &flash0;                     /* 其他系统资源配置 */
+        zmk,usb-name = "toutou!68";                 /* USB设备名称 */
+        zephyr,code-partition = &code_partition;    /* 新增,引导加载程序分区 */
     };
 
     /* <--- 新增key location */
@@ -38,7 +38,6 @@
         RC(4,0) RC(4,1) RC(4,2)                 RC(4,5)                 RC(4,8) RC(4,9)  RC(4,10) RC(4,11) RC(4,12)          RC(4,14) 
         >;
     };
-
 
 
     /* 键盘矩阵扫描配置 - 5行 x 15列 矩阵 */
@@ -88,17 +87,9 @@
     };
 
     /* 新增：蓝牙状态指示灯 */
-    leds {
+        leds {
         compatible = "gpio-leds";
-
-        /* 蓝牙状态LED - 引脚111 (P1.11) */ 
-        led_ble_status: led_ble_status {
-            label = "Bluetooth Status LED";
-            gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>; 
-        };
-
-        /* 测试 LED（可选），如需单独测试硬件可取消注释 */
-        test_led: test_led {
+        blue_led: led_0 {
             gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
         };
     };
@@ -106,7 +97,7 @@
     // Node name must match original "EXT_POWER" label to preserve user settings.
     EXT_POWER {
         compatible = "zmk,ext-power-generic";
-        control-gpios = <&gpio0 5 GPIO_ACTIVE_LOW>;
+        control-gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
     };
 
     /* 电池电量检测配置 - 使用ADC读取电池电压 */
@@ -124,7 +115,7 @@
         output-ohms = <1000000>;
         full-ohms = <2000000>;
         /* ADC采样引脚 - 引脚004 (P0.04) */
-        io-channels = <&adc 4>;
+        io-channels = <&adc 2>;
     };
 };
 

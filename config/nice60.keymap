@@ -10,21 +10,6 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-
-    /* 自定义行为：GPIO 控制 LED 测试 */
-    behaviors {
-        test_led_on: test_led_on {
-            compatible = "zmk,behavior-gpio";
-            #binding-cells = <0>;
-            gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-        };
-        test_led_off: test_led_off {
-            compatible = "zmk,behavior-gpio";
-            #binding-cells = <0>;
-            gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
@@ -61,7 +46,6 @@
         &bootloader   &sys_reset   &trans                               &rgb_ug RGB_EFF                    &trans   &trans  &trans   &rgb_ug RGB_HUI   &rgb_ug RGB_BRD   &rgb_ug RGB_HUD
             >;
         };
-
     };
 };
 
