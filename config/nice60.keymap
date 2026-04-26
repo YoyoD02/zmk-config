@@ -10,6 +10,21 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+
+    /* 自定义行为：GPIO 控制 LED 测试 */
+    behaviors {
+        test_led_on: test_led_on {
+            compatible = "zmk,behavior-gpio";
+            #binding-cells = <0>;
+            gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
+        };
+        test_led_off: test_led_off {
+            compatible = "zmk,behavior-gpio";
+            #binding-cells = <0>;
+            gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -47,27 +62,6 @@
             >;
         };
 
-
-
-        test_led_on: test_led_on {
-            compatible = "zmk,behavior-gpio";
-            #binding-cells = <0>;
-            gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-        };
-        test_led_off: test_led_off {
-            compatible = "zmk,behavior-gpio";
-            #binding-cells = <0>;
-            gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-        };
-
-        // ... 在某一层（layer）中绑定这两个行为到临时按键上
-        // 例如，绑定到键盘上暂时用不到的 F13 和 F14 键
-        // 注意：你需要根据你的键盘实际配列来修改
-
-
-
     };
 };
-
-
 
