@@ -40,11 +40,35 @@
 // ------------------------------------------------------------------------------------------------
             bindings = <
         &bt BT_CLR    &kp F1       &kp F2    &kp F3    &kp F4           &kp F5           &kp F6   &kp F7   &kp F8   &kp F9  &kp F10  &kp F11  &kp F12  &trans            &kp INS
-        &bt BT_SEL 0  &trans       &kp UP    &trans    &rgb_ug RGB_SAI  &rgb_ug RGB_SPI  &trans   &trans   &trans   &trans  &trans   &trans   &trans   &trans            &rgb_ug RGB_TOG
+        &bt BT_SEL 0  &trans       &kp UP    &trans    &rgb_ug RGB_SAI  &rgb_ug RGB_SPI  &trans   &trans   &trans   &trans  &trans   &trans   &test_led_on   &test_led_off            &rgb_ug RGB_TOG
         &bt BT_SEL 1  &kp LEFT     &kp DOWN  &kp RIGHT &rgb_ug RGB_SAD  &rgb_ug RGB_SPD  &trans   &trans   &trans   &trans  &trans   &trans   &trans                     &kp PSCRN
         &bt BT_SEL 2  &trans       &trans    &trans    &trans           &trans           &trans   &trans   &trans   &trans  &trans   &trans            &rgb_ug RGB_BRI   &trans
         &bootloader   &sys_reset   &trans                               &rgb_ug RGB_EFF                    &trans   &trans  &trans   &rgb_ug RGB_HUI   &rgb_ug RGB_BRD   &rgb_ug RGB_HUD
             >;
         };
+
+
+        custom_events {
+            test_led_on: test_led_on {
+                compatible = "zmk,behavior-gpio-out";
+                #binding-cells = <0>;
+                gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
+            };
+            test_led_off: test_led_off {
+                compatible = "zmk,behavior-gpio-out";
+                #binding-cells = <0>;
+                gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
+            };
+        };
+        // 将你的某个按键绑定到这个事件
+        // ... 在你的keymap中某个位置添加: &test_led_on, 和 &test_led_off
+
+
+
+
+
     };
 };
+
+
+
