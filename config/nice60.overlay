@@ -22,11 +22,10 @@
         zmk,physical-layout = &layout_60_ansi;      /* <--- 新增 键盘布局*/
         zephyr,flash = &flash0;                     /* 其他系统资源配置 */
         zmk,usb-name = "toutou!68";                 /* USB设备名称 */
-        zephyr,code-partition = &code_partition;    /* 新增,引导加载程序分区 */
     };
 
     /* <--- 新增key location */
- default_transform: keymap_transform_0 {
+    default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <15>;
         rows = <5>;
@@ -44,9 +43,8 @@
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "toutou68_KEYSCAN";
-
-        wakeup-source;                                          /* wakeup source must be below */
-
+        /* wakeup source must be below */
+        wakeup-source;                                          
         /* 二极管方向: 行到列 (row2col) 或 列到行 (col2row) 
          * 需根据PCB实际电路确定, 常用 col2row */
         diode-direction = "col2row";
