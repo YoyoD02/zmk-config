@@ -21,12 +21,12 @@
         zmk,battery = &vbatt;                       /* <--- 电池电量检测 */ 
         zmk,physical-layout = &layout_60_ansi;      /* <--- 新增 键盘布局*/
         zephyr,flash = &flash0;                     /* 其他系统资源配置 */
-        zmk,usb-name = "toutou!68";                 /* USB设备名称 */
+        zmk,usb-name = "toutou!68-yao";                 /* USB设备名称 */
     };
 
     /* <--- 新增key location */
     default_transform: keymap_transform_0 {
-        compatible = "zmk,matrix-transform";
+        compatible = "zmk,matrix-transform"
         columns = <15>;
         rows = <5>;
         map = <
