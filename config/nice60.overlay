@@ -84,11 +84,11 @@
             , <&gpio0 3  (GPIO_ACTIVE_HIGH)>; /* 列14 - 引脚003 (P0.03) */
     };
 
-    /* 新增：蓝牙状态指示灯 */
+    /* 新增：蓝牙状态指示灯,zmk兼容GPIO状态指示灯 */
         leds {
-        compatible = "gpio-leds";
+        compatible = "zmk,led-gpio";
         status = "okay";
-        blue_led: led_0 {
+        led_0 {
             gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
             label = "BLUE_LED";
         };
