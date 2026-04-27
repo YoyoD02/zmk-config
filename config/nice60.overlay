@@ -21,12 +21,12 @@
         zmk,battery = &vbatt;                       /* <--- 电池电量检测 */ 
         zmk,physical-layout = &layout_60_ansi;      /* <--- 新增 键盘布局*/
         zephyr,flash = &flash0;                     /* 其他系统资源配置 */
-        zmk,usb-name = "toutou!68-yao";                 /* USB设备名称 */
+        zmk,usb-name = "toutou!68";                 /* USB设备名称 */
     };
 
     /* <--- 新增key location */
     default_transform: keymap_transform_0 {
-        compatible = "zmk,matrix-transform"
+        compatible = "zmk,matrix-transform";
         columns = <15>;
         rows = <5>;
         map = <
@@ -67,30 +67,28 @@
          * (列通常不需要内部上拉/下拉)
          */
         col-gpios
-            = <&gpio0 26 (GPIO_ACTIVE_HIGH)>    /* 列0  - 引脚026 (P0.26) */
-            , <&gpio0 6  (GPIO_ACTIVE_HIGH)>    /* 列1  - 引脚006 (P0.06) */
-            , <&gpio0 8  (GPIO_ACTIVE_HIGH)>    /* 列2  - 引脚008 (P0.08) */
-            , <&gpio0 12 (GPIO_ACTIVE_HIGH)>    /* 列3  - 引脚012 (P0.12) */
-            , <&gpio1 9  (GPIO_ACTIVE_HIGH)>    /* 列4  - 引脚109 (P1.09) */
-            , <&gpio0 15 (GPIO_ACTIVE_HIGH)>    /* 列5  - 引脚015 (P0.15) */
-            , <&gpio0 17 (GPIO_ACTIVE_HIGH)>    /* 列6  - 引脚017 (P0.17) */
-            , <&gpio0 20 (GPIO_ACTIVE_HIGH)>    /* 列7  - 引脚020 (P0.20) */
-            , <&gpio0 22 (GPIO_ACTIVE_HIGH)>    /* 列8  - 引脚022 (P0.22) */
-            , <&gpio1 0  (GPIO_ACTIVE_HIGH)>    /* 列9  - 引脚100 (P1.00) */
-            , <&gpio0 13 (GPIO_ACTIVE_HIGH)>    /* 列10 - 引脚013 (P0.13) */
-            , <&gpio0 24 (GPIO_ACTIVE_HIGH)>    /* 列11 - 引脚024 (P0.24) */
-            , <&gpio1 10 (GPIO_ACTIVE_HIGH)>    /* 列12 - 引脚110 (P1.10) */
-            , <&gpio0 28 (GPIO_ACTIVE_HIGH)>    /* 列13 - 引脚028 (P0.28) */
-            , <&gpio0 3  (GPIO_ACTIVE_HIGH)>;   /* 列14 - 引脚003 (P0.03) */
+            = <&gpio0 26 (GPIO_ACTIVE_HIGH)>  /* 列0  - 引脚026 (P0.26) */
+            , <&gpio0 6  (GPIO_ACTIVE_HIGH)>  /* 列1  - 引脚006 (P0.06) */
+            , <&gpio0 8  (GPIO_ACTIVE_HIGH)>  /* 列2  - 引脚008 (P0.08) */
+            , <&gpio0 12 (GPIO_ACTIVE_HIGH)>  /* 列3  - 引脚012 (P0.12) */
+            , <&gpio1 9  (GPIO_ACTIVE_HIGH)>  /* 列4  - 引脚109 (P1.09) */
+            , <&gpio0 15 (GPIO_ACTIVE_HIGH)>  /* 列5  - 引脚015 (P0.15) */
+            , <&gpio0 17 (GPIO_ACTIVE_HIGH)>  /* 列6  - 引脚017 (P0.17) */
+            , <&gpio0 20 (GPIO_ACTIVE_HIGH)>  /* 列7  - 引脚020 (P0.20) */
+            , <&gpio0 22 (GPIO_ACTIVE_HIGH)>  /* 列8  - 引脚022 (P0.22) */
+            , <&gpio1 0 (GPIO_ACTIVE_HIGH)>   /* 列9  - 引脚100 (P1.00) */
+            , <&gpio0 13 (GPIO_ACTIVE_HIGH)>  /* 列10 - 引脚013 (P0.13) */
+            , <&gpio0 24 (GPIO_ACTIVE_HIGH)>  /* 列11 - 引脚024 (P0.24) */
+            , <&gpio1 10 (GPIO_ACTIVE_HIGH)>  /* 列12 - 引脚110 (P1.10) */
+            , <&gpio0 28 (GPIO_ACTIVE_HIGH)>  /* 列13 - 引脚028 (P0.28) */
+            , <&gpio0 3  (GPIO_ACTIVE_HIGH)>; /* 列14 - 引脚003 (P0.03) */
     };
 
     /* 新增：蓝牙状态指示灯 */
         leds {
         compatible = "gpio-leds";
-        status = "okay";
         blue_led: led_0 {
             gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-            label = "BLUE_LED";
         };
     };
 
